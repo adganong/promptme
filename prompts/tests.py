@@ -8,24 +8,36 @@ from prompts.toolbelt import tests_toolbelt
 # Pieces to be used throughout the tests
 genre_pieces = None
 piece_types = None
+prompt_pieces = None
 
 
-class GenreAPITestCase(APITestCase):
+class GenreCreationTestCase(APITestCase):
     # Create your tests here.
     def setUp(self):
         # This is to set up everything we will be using over the course of the tests
         genre_pieces = tests_toolbelt.create_genres()
 
-    def test_general_genre(self):
+    def test_genre_creation(self):
         genre_count = Genre.objects.count()
         self.assertEqual(genre_count, 4)
 
 
-class PieceTypeAPITestCase(APITestCase):
+class PieceTypeCreationTestCase(APITestCase):
     # Create your tests here.
     def setUp(self):
         piece_types = tests_toolbelt.create_piece_types()
 
-    def test_general_genre(self):
-        piece_count = PieceType.objects.count()
+    def test_piece_type_creation(self):
+        type_count = PieceType.objects.count()
+        self.assertEqual(type_count, 4)
+
+
+class PromptPieceCreationTestCase(APITestCase):
+    # Create your tests here.
+    def setUp(self):
+        prompt_pieces = tests_toolbelt.create_prompt_pieces()
+
+    def test_prompt_piece_creation(self):
+        piece_count = PromptPiece.objects.count()
         self.assertEqual(piece_count, 4)
+
