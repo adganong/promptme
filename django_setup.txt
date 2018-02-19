@@ -1,0 +1,60 @@
+Note to future self. I am running Djanoig 1.11 as it is the current continous support
+to install 
+
+1)start venv
+2)pip install Django
+3)pip install djangorestframework
+4)django-admin startproject <projectname>
+5)easy_install C:\psycopg2.exe
+&&
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '<dbname>',
+        'USER': 'adam',
+        'PASSWORD': 'C0np4ss',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+&&
+
+6)modify settings. add 'rest_framework',  to installed apps
+7)python manage.py startapp <appname>
+8)write tests (look for example, or learn)
+	a)from .models import <Model Names> 
+	b)write tests for models
+	c) run tests
+
+9)make models
+10)python manage.py makemigrations then run python manage.py migrate (builds tables) 
+
+
+?? The specially installed stuff ??????????????????????????????????????????????????????
+
+1)pip install Django==1.11
+
+
+ADDED IN OTHER VID
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+&&
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'postings'
+]
+
+
