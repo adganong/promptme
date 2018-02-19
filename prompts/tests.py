@@ -6,23 +6,19 @@ from rest_framework.reverse import reverse as api_reverse
 from .models import Genre, PromptPiece, BuiltPrompt, PieceType
 from prompts.toolbelt import tests_toolbelt
 # Pieces to be used throughout the tests
-genre_piece = None
+genre_pieces = None
 piece_types = None
-general_genre_piece = None
 
 
 class GenreAPITestCase(APITestCase):
     # Create your tests here.
     def setUp(self):
         # This is to set up everything we will be using over the course of the tests
-        general_genre_piece = Genre.objects.create(
-                genre_name='General',
-            )
-        general_genre_piece.save()
+        genre_pieces = tests_toolbelt.create_genres()
 
     def test_general_genre(self):
         genre_count = Genre.objects.count()
-        self.assertEqual(genre_count, 1)
+        self.assertEqual(genre_count, 4)
 
 
 class PieceTypeAPITestCase(APITestCase):

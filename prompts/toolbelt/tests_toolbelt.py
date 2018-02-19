@@ -22,3 +22,18 @@ def create_piece_types():
         to_return.append(piece_type)
 
     return to_return
+
+
+def create_genres():
+    # This is to set up everything we will be using over the course of the tests
+
+    genres_names = ['general', 'sci-fi', 'fantasy', 'thriller']
+    to_return = []
+    for genre_name in genres_names:
+        genre = Genre.objects.create(
+            genre_name=genre_name,
+        )
+        genre.save()
+        to_return.append(genre)
+
+    return to_return
