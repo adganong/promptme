@@ -33,12 +33,8 @@ def create_genres():
         )
         genre.save()
         to_return.append(genre)
-
     return to_return
 
-def gm(obj, param):
-    object = Genre.objects.filter(pub_date__year=param)
-    return object
 
 def create_prompt_pieces(piece_types, piece_genres):
     # This is to set up everything we will be using over the course of the tests
@@ -47,19 +43,18 @@ def create_prompt_pieces(piece_types, piece_genres):
     to_return = []
 
     for i in range(0, 4):
-        print("this" + str(i))
         # This is what I am working on!!!
         this_thing = PieceType.objects.filter(piece_type_name=piece_types[i])
-        print(this_thing.piece_type_name)
         # print()
-        '''prompt_piece = PromptPiece.objects.create(
-    piece_type          = PieceType.objects.filter(piece_type_name=str(piece_types[i].piece_type_name)),
-    piece_genre         = Genre.objects.filter(genre_name=str(piece_genres[0].genre_name)),
-    piece_name          = piece_name[i],
-    piece_description   = piece_description[i],
-
+        PieceType.objects.get(piece_type_name=piece_types[i])
+        prompt_piece = PromptPiece.objects.create(
+            piece_type          = PieceType.objects.filter(piece_type_name=piece_types[i]),
+            piece_genre         = Genre.objects.filter(genre_name=str(piece_genres[0].genre_name)),
+            piece_name          = piece_name[i],
+            piece_description   = piece_description[i],
+        )
         prompt_piece.save()
         to_return.append(prompt_piece)
-        )'''
+
 
     return to_return
