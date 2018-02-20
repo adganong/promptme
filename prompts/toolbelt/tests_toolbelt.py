@@ -36,20 +36,30 @@ def create_genres():
 
     return to_return
 
+def gm(obj, param):
+    object = Genre.objects.filter(pub_date__year=param)
+    return object
 
 def create_prompt_pieces(piece_types, piece_genres):
     # This is to set up everything we will be using over the course of the tests
     piece_name = ['Retired Captain', 'A Market', 'A Computer', 'Something has been lost']
     piece_description = ['description 1', 'description 2', 'description 3', 'description 4']
     to_return = []
-    for i in range(4):
-        prompt_piece = PromptPiece.objects.create(
-            piece_type=piece_types[i],
-            piece_genre=piece_genres[0],
-            piece_name=piece_description[i],
-            piece_description=piece_name[i],
-        )
+
+    for i in range(0, 4):
+        print("this" + str(i))
+        # This is what I am working on!!!
+        this_thing = PieceType.objects.filter(piece_type_name=piece_types[i])
+        print(this_thing.piece_type_name)
+        # print()
+        '''prompt_piece = PromptPiece.objects.create(
+    piece_type          = PieceType.objects.filter(piece_type_name=str(piece_types[i].piece_type_name)),
+    piece_genre         = Genre.objects.filter(genre_name=str(piece_genres[0].genre_name)),
+    piece_name          = piece_name[i],
+    piece_description   = piece_description[i],
+
         prompt_piece.save()
         to_return.append(prompt_piece)
+        )'''
 
     return to_return
