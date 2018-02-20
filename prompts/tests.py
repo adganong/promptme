@@ -14,6 +14,7 @@ prompt_pieces = []
 class GenreCreationTestCase(APITestCase):
     # Create your tests here.
     def setUp(self):
+        print("I am in setup")
         # This is to set up everything we will be using over the course of the tests
         global genre_pieces
         global piece_types
@@ -27,7 +28,6 @@ class GenreCreationTestCase(APITestCase):
         self.assertEqual(genre_count, 4)
 
     def test_piece_type_creation(self):
-        this = PieceType.objects.get(piece_type_name="person")
         type_count = PieceType.objects.count()
         self.assertEqual(type_count, 4)
 

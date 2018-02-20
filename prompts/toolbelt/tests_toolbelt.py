@@ -18,7 +18,7 @@ def create_piece_types():
             piece_type_name=type_name,
         )
         piece_type.save()
-        to_return.append(piece_type)
+        to_return.append(type_name)
 
     return to_return
 
@@ -32,7 +32,7 @@ def create_genres():
             genre_name=genre_name,
         )
         genre.save()
-        to_return.append(genre)
+        to_return.append(genre_name)
     return to_return
 
 
@@ -40,21 +40,30 @@ def create_prompt_pieces(piece_types, piece_genres):
     # This is to set up everything we will be using over the course of the tests
     piece_name = ['Retired Captain', 'A Market', 'A Computer', 'Something has been lost']
     piece_description = ['description 1', 'description 2', 'description 3', 'description 4']
+    print("The piece genre is")
+    print(piece_genres)
+    piece_type = PieceType.objects.get(piece_type_name=piece_types[0])
+    piece_genre = Genre.objects.get(genre_name=piece_genres[0])
+    print("The type is")
+    print(piece_type)
     to_return = []
 
     for i in range(0, 4):
         # This is what I am working on!!!
-        this_thing = PieceType.objects.filter(piece_type_name=piece_types[i])
         # print()
-        PieceType.objects.get(piece_type_name=piece_types[i])
+        piece_type = PieceType.objects.get(piece_type_name=piece_types[i])
         prompt_piece = PromptPiece.objects.create(
-            piece_type          = PieceType.objects.filter(piece_type_name=piece_types[i]),
-            piece_genre         = Genre.objects.filter(genre_name=str(piece_genres[0].genre_name)),
+            piece_type          = piece_type,
+            piece_genre         = piece_genre,
             piece_name          = piece_name[i],
             piece_description   = piece_description[i],
         )
         prompt_piece.save()
         to_return.append(prompt_piece)
 
-
     return to_return
+
+
+def setup_basic_data ():
+    create_genres()
+    create_piece_types()
