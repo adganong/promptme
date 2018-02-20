@@ -29,12 +29,17 @@ class PromptPiece(models.Model):
     piece_name          = models.CharField(max_length=256, null=False, blank=False)
     piece_description   = models.TextField(max_length=256, null=True, blank=True)
 
+    def get_random_by_genre(self):
+        pass
+
     def __str__(self):
         return str(self.piece_name)
 
 
 class BuiltPrompt(models.Model):
-    pass
+
+    def __str__(self):
+        return str(self.piece_name)
 
 
 

@@ -14,7 +14,6 @@ prompt_pieces = []
 class GenreCreationTestCase(APITestCase):
     # Create your tests here.
     def setUp(self):
-        print("I am in setup")
         # This is to set up everything we will be using over the course of the tests
         global genre_pieces
         global piece_types
@@ -22,6 +21,7 @@ class GenreCreationTestCase(APITestCase):
         genre_pieces = tests_toolbelt.create_genres()
         piece_types = tests_toolbelt.create_piece_types()
         prompt_pieces = tests_toolbelt.create_prompt_pieces(piece_types, genre_pieces)
+        # tests_toolbelt.create_full_prompt()
 
     def test_genre_creation(self):
         genre_count = Genre.objects.count()
@@ -35,6 +35,9 @@ class GenreCreationTestCase(APITestCase):
         piece_count = PromptPiece.objects.count()
         self.assertEqual(piece_count, 4)
 
+    def test_full_prompt(self):
+        prompt_count = BuiltPrompt.objects.count()
+        self.assertEqual(prompt_count, 1)
 
 
 

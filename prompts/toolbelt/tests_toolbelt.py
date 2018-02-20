@@ -40,12 +40,8 @@ def create_prompt_pieces(piece_types, piece_genres):
     # This is to set up everything we will be using over the course of the tests
     piece_name = ['Retired Captain', 'A Market', 'A Computer', 'Something has been lost']
     piece_description = ['description 1', 'description 2', 'description 3', 'description 4']
-    print("The piece genre is")
-    print(piece_genres)
     piece_type = PieceType.objects.get(piece_type_name=piece_types[0])
     piece_genre = Genre.objects.get(genre_name=piece_genres[0])
-    print("The type is")
-    print(piece_type)
     to_return = []
 
     for i in range(0, 4):
@@ -64,6 +60,21 @@ def create_prompt_pieces(piece_types, piece_genres):
     return to_return
 
 
-def setup_basic_data ():
-    create_genres()
-    create_piece_types()
+def create_full_prompt():
+    # This will need to query the db based on the 4 types of pieces there are and select one based on each
+    # This will be a true to life example of how the actual test will work
+    piece_genre  = Genre.objects.get(genre_name="general")
+
+    returned_person     = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
+    returned_place      = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
+    returned_thing      = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
+    returned_scenario   = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
+
+    built_prompt        = BuiltPrompt.objects.create(
+        prompt_person   = returned_person,
+        prompt_place    = returned_place,
+        prompt_thing    = returned_thing,
+        prompt_scenario = returned_scenario,
+    )
+    built_prompt.save()
+
