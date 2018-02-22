@@ -37,14 +37,20 @@ class PromptPiece(models.Model):
 
 
 class BuiltPrompt(models.Model):
-    prompt_name = models.CharField(max_length=256, null=True, blank=True)
-    prompt_person = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_person')
-    prompt_place = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_place')
-    prompt_thing = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_thing')
+    prompt_name     = models.CharField(max_length=256, null=True, blank=True)
+    prompt_person   = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_person')
+    prompt_place    = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_place')
+    prompt_thing    = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_thing')
     prompt_scenario = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_scenario')
 
     def __str__(self):
-        return str(self.prompt_name)
+        return str(
+            self.prompt_name    + "\n\n " +
+            "\tPerson:\t\t\t"    + self.prompt_person.piece_name     + " \n " +
+            "\tPlace:\t\t\t"     + self.prompt_place.piece_name      + " \n " +
+            "\tThing:\t\t\t"     + self.prompt_thing.piece_name      + " \n " +
+            "\tScenario:\t\t"  + self.prompt_scenario.piece_name
+        )
 
 
 
