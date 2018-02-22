@@ -64,17 +64,20 @@ def create_full_prompt():
     # This will need to query the db based on the 4 types of pieces there are and select one based on each
     # This will be a true to life example of how the actual test will work
     piece_genre  = Genre.objects.get(genre_name="general")
+    given_prompt_name = "This is a test prompt"
+    # This will need to be changed once more code is developed
+    returned_person     = PromptPiece.objects.get(piece_type=PieceType.objects.get(piece_type_name="person"))
+    print(returned_person)
+    '''returned_place      = PromptPiece.objects.get(piece_type=)
+    returned_thing      = PromptPiece.objects.get(piece_type=)
+    returned_scenario   = PromptPiece.objects.get(piece_type=)'''
 
-    returned_person     = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
-    returned_place      = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
-    returned_thing      = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
-    returned_scenario   = PromptPiece.get_random_by_genre(piece_genre_id=piece_genre.id)
-
-    built_prompt        = BuiltPrompt.objects.create(
-        prompt_person   = returned_person,
-        prompt_place    = returned_place,
-        prompt_thing    = returned_thing,
-        prompt_scenario = returned_scenario,
-    )
-    built_prompt.save()
+    '''built_prompt        = BuiltPrompt.objects.create(
+    prompt_name     = given_prompt_name,
+    prompt_person   = returned_person,
+    prompt_place    = returned_place,
+    prompt_thing    = returned_thing,
+    prompt_scenario = returned_scenario,
+)'''
+    # built_prompt.save()
 

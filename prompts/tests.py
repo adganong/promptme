@@ -19,15 +19,15 @@ class GenreCreationTestCase(APITestCase):
         global piece_types
         global prompt_pieces
         genre_pieces = tests_toolbelt.create_genres()
-        piece_types = tests_toolbelt.create_piece_types()
-        prompt_pieces = tests_toolbelt.create_prompt_pieces(piece_types, genre_pieces)
-        # tests_toolbelt.create_full_prompt()
+        # piece_types = tests_toolbelt.create_piece_types()
+        # prompt_pieces = tests_toolbelt.create_prompt_pieces(piece_types, genre_pieces)
+        tests_toolbelt.create_full_prompt()
 
     def test_genre_creation(self):
         genre_count = Genre.objects.count()
         self.assertEqual(genre_count, 4)
 
-    def test_piece_type_creation(self):
+    '''def test_piece_type_creation(self):
         type_count = PieceType.objects.count()
         self.assertEqual(type_count, 4)
 
@@ -37,7 +37,7 @@ class GenreCreationTestCase(APITestCase):
 
     def test_full_prompt(self):
         prompt_count = BuiltPrompt.objects.count()
-        self.assertEqual(prompt_count, 1)
+        self.assertEqual(prompt_count, 1)'''
 
 
 

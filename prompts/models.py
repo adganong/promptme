@@ -37,9 +37,14 @@ class PromptPiece(models.Model):
 
 
 class BuiltPrompt(models.Model):
+    prompt_name = models.CharField(max_length=256, null=True, blank=True)
+    prompt_person = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_person')
+    prompt_place = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_place')
+    prompt_thing = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_thing')
+    prompt_scenario = models.ForeignKey(PromptPiece, null=False, blank=False, related_name='prompt_scenario')
 
     def __str__(self):
-        return str(self.piece_name)
+        return str(self.prompt_name)
 
 
 
