@@ -11,7 +11,7 @@ piece_types = []
 prompt_pieces = []
 
 
-class GenreCreationTestCase(APITestCase):
+class BasicModelTests(APITestCase):
     # Create your tests here.
     def setUp(self):
         # This is to set up everything we will be using over the course of the tests
