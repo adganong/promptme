@@ -5,7 +5,7 @@ from prompts import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^genre/', views.GenreList.as_view()),
+    url(r'^genres/', views.GenreList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
