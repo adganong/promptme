@@ -3,12 +3,28 @@ from .models import PromptPiece, BuiltPrompt, Genre, PieceType
 
 
 class GenreSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Genre
         # Do not use this, but everything can be returned by using
         # fields = '__all__'
         fields = (
+            'pk',
             'genre_name',
             'parent_id',
         )
+
+        # If URL is added, it should also be added here
+        read_only_fields = ['pk']
+
+    # Url stuff? I don't exactly get what this is meant to do though
+    # Okay, I get this now. It is grabbing the url and putting it into the 'url' field
+    # it knows where to put it because the format is get_<arg> and that function will auto fill in my fields
+    # This is not really needed for what I am doing here actually
+
+    # def get_url(self, obj):
+    #    request = self.context.get("request")
+    #    return obj.get_api_url()
+
+
