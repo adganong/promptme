@@ -7,3 +7,12 @@ from .serializer import GenreSerializer
 # Create your views here.
 
 
+class GenreList(APIView):
+
+    def get(self, request):
+        genre = Genre.objects.all()
+        serializer = GenreSerializer(genre, many=True)
+        return Response(serializer.data)
+
+    # There is no post for this, that is a strategic choice.
+    # Any additions to the Genre table MUST be done through the admin view.
