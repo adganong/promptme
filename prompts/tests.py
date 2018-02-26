@@ -46,7 +46,10 @@ class EndPointTests(APITestCase):
         user = tests_toolbelt.make_and_return_user('testuser', 'testpass')
 
     def test_get_genres(self):
-        pass
+        data = {}
+        url = api_reverse("api-genres:genres-list")
+        response = self.client.get(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 

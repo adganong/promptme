@@ -3,7 +3,7 @@ from .models import PromptPiece, BuiltPrompt, Genre, PieceType
 
 
 class GenreSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField(read_only=True)
+    # url = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Genre
