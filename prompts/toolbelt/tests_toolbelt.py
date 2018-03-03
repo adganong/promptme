@@ -1,3 +1,5 @@
+# TODO need to create a dictionary with all of the data that will be used for the tests
+
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -6,8 +8,6 @@ from rest_framework.reverse import reverse as api_reverse
 from django.contrib.auth import get_user_model
 from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
 
-# Pieces to be used throughout the tests
-# These are functions to be used in the tests
 
 def create_test_library():
     pass
