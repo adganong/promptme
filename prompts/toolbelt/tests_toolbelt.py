@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse as api_reverse
+from django.contrib.auth import get_user_model
 from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
 
 # Pieces to be used throughout the tests
@@ -80,3 +81,20 @@ def create_full_prompt():
     )
     built_prompt.save()
 
+
+def make_and_return_user(username, userpass):
+    user_model = get_user_model()
+    user = user_model(
+        username=username,
+        email=username + '@' + username + '.ca'
+    )
+    user.set_password(userpass)
+    user.save()
+    return user
+
+
+def do_full_setup():
+    genre_pieces = create_genres()
+    piece_types = create_piece_types()
+    create_prompt_pieces(piece_types, genre_pieces)
+    create_full_prompt()

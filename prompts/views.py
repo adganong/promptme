@@ -15,3 +15,7 @@ class GenreList(APIView):
 
         # There is no post for this, that is a strategic choice.
     # Any additions to the Genre table MUST be done through the admin view.
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+

@@ -5,23 +5,23 @@ from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse as api_reverse
 from .models import Genre, PromptPiece, BuiltPrompt, PieceType
 from prompts.toolbelt import tests_toolbelt
+from django.contrib.auth import get_user_model
 # Pieces to be used throughout the tests
-genre_pieces = []
-piece_types = []
-prompt_pieces = []
+
+
+class UserCreationTest(APITestCase):
+    def setUp(self):
+        tests_toolbelt.make_and_return_user('test', 'test')
+
+    def test_genre_creation(self):
+        user = get_user_model()
+        user_count = user.objects.count()
+        self.assertEqual(user_count, 1)
 
 
 class BasicModelTests(APITestCase):
-    # Create your tests here.
     def setUp(self):
-        # This is to set up everything we will be using over the course of the tests
-        global genre_pieces
-        global piece_types
-        global prompt_pieces
-        genre_pieces = tests_toolbelt.create_genres()
-        piece_types = tests_toolbelt.create_piece_types()
-        prompt_pieces = tests_toolbelt.create_prompt_pieces(piece_types, genre_pieces)
-        tests_toolbelt.create_full_prompt()
+        tests_toolbelt.do_full_setup()
 
     def test_genre_creation(self):
         genre_count = Genre.objects.count()
@@ -36,11 +36,20 @@ class BasicModelTests(APITestCase):
         self.assertEqual(piece_count, 4)
 
     def test_full_prompt(self):
-        to_show = BuiltPrompt.objects.first()
-        print(to_show)
         prompt_count = BuiltPrompt.objects.count()
         self.assertEqual(prompt_count, 1)
 
+
+class EndPointTests(APITestCase):
+    def setUp(self):
+        tests_toolbelt.do_full_setup()
+        user = tests_toolbelt.make_and_return_user('testuser', 'testpass')
+
+    def test_get_genres(self):
+        data = {}
+        url = api_reverse("api-genres:genres-list")
+        response = self.client.get(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 
