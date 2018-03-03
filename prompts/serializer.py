@@ -28,3 +28,53 @@ class GenreSerializer(serializers.ModelSerializer):
     #    return obj.get_api_url()
 
 
+class PieceTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        # I am not surre what this is, nor why exactly it is here. I think it has to do with putting info
+        model = PieceType
+
+        fields = (
+            'pk',
+            'piece_type_name',
+        )
+        read_only_fields = ['pk', 'piece_type_name']
+
+
+class PromptPieceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PromptPiece
+
+        fields = (
+            'pk',
+            'piece_type',
+            'piece_genre',
+            'piece_name',
+            'piece_description',
+        )
+        read_only_fields = ['pk']
+
+
+class BuiltPromptSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PromptPiece
+
+        fields = (
+            'pk',
+            'prompt_name',
+            'prompt_person',
+            'prompt_place',
+            'prompt_thing',
+            'prompt_scenario',
+        )
+
+        # I have made this entire thing read only because I don't see any instance in which one would ever be edited
+        # They should only ever be recreated
+        read_only_fields = [
+            'pk',
+            'prompt_name',
+            'prompt_person',
+            'prompt_place',
+            'prompt_thing',
+            'prompt_scenario',
+        ]
