@@ -48,4 +48,13 @@ class PromptPieceList(APIView):
 
 
 class BuiltPromptList(APIView):
-    pass
+    def get(self, request):
+        built_prompt = BuiltPrompt.objects.all()
+        serializer = PromptPieceSerializer(built_prompt, many=True)
+        return Response(serializer.data)
+
+        # There is no post for this, that is a strategic choice.
+    # Any additions to the Genre table MUST be done through the admin view.
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}

@@ -56,4 +56,25 @@ class PromptPieceSerializer(serializers.ModelSerializer):
 
 
 class BuiltPromptSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = PromptPiece
+
+        fields = (
+            'pk',
+            'prompt_name',
+            'prompt_person',
+            'prompt_place',
+            'prompt_thing',
+            'prompt_scenario',
+        )
+
+        # I have made this entire thing read only because I don't see any instance in which one would ever be edited
+        # They should only ever be recreated
+        read_only_fields = [
+            'pk',
+            'prompt_name',
+            'prompt_person',
+            'prompt_place',
+            'prompt_thing',
+            'prompt_scenario',
+        ]

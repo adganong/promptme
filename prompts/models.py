@@ -41,6 +41,9 @@ class PromptPiece(models.Model):
     def __str__(self):
         return str(self.piece_name)
 
+    def get_api_url(self, request=None):
+        return api_reverse("api-prompt_pieces:prompt_pieces-list", request=request)
+
 
 class BuiltPrompt(models.Model):
     prompt_name     = models.CharField(max_length=256, null=True, blank=True)
@@ -58,6 +61,8 @@ class BuiltPrompt(models.Model):
             "\tScenario:\t\t"  + self.prompt_scenario.piece_name
         )
 
+    def get_api_url(self, request=None):
+        return api_reverse("api-built_prompts:built_prompts-list", request=request)
 
 
 
