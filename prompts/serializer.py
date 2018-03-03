@@ -31,7 +31,8 @@ class GenreSerializer(serializers.ModelSerializer):
 class PieceTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Genre
+        # I am not surre what this is, nor why exactly it is here. I think it has to do with putting info
+        model = PieceType
 
         fields = (
             'pk',
@@ -41,7 +42,17 @@ class PieceTypeSerializer(serializers.ModelSerializer):
 
 
 class PromptPieceSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = PromptPiece
+
+        fields = (
+            'pk',
+            'piece_type',
+            'piece_genre',
+            'piece_name',
+            'piece_description',
+        )
+        read_only_fields = ['pk']
 
 
 class BuiltPromptSerializer(serializers.ModelSerializer):

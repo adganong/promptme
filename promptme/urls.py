@@ -8,6 +8,7 @@ urlpatterns = [
     # For genres
     url(r'^api/genres', include('prompts.urls', namespace='api-genres')),
     url(r'^api/piece_types', include('prompts.urls', namespace='api-piece_types')),
+    url(r'^api/prompt_pieces', include('prompts.urls', namespace='api-prompt_pieces')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
