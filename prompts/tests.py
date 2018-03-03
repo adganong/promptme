@@ -51,5 +51,11 @@ class EndPointTests(APITestCase):
         response = self.client.get(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_get_piece_types(self):
+        data = {}
+        url = api_reverse("api-piece_types:piece_types-list")
+        response = self.client.get(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 

@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # For genres
     url(r'^api/genres', include('prompts.urls', namespace='api-genres')),
+    url(r'^api/piece_types', include('prompts.urls', namespace='api-piece_types')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

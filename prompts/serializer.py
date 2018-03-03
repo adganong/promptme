@@ -28,3 +28,21 @@ class GenreSerializer(serializers.ModelSerializer):
     #    return obj.get_api_url()
 
 
+class PieceTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Genre
+
+        fields = (
+            'pk',
+            'piece_type_name',
+        )
+        read_only_fields = ['pk', 'piece_type_name']
+
+
+class PromptPieceSerializer(serializers.ModelSerializer):
+    pass
+
+
+class BuiltPromptSerializer(serializers.ModelSerializer):
+    pass
