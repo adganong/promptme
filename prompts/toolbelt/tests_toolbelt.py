@@ -9,6 +9,9 @@ from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
 # Pieces to be used throughout the tests
 # These are functions to be used in the tests
 
+def create_test_library():
+    pass
+
 
 def create_piece_types():
     # This is to set up everything we will be using over the course of the tests

@@ -57,7 +57,7 @@ class PromptPieceSerializer(serializers.ModelSerializer):
 
 class BuiltPromptSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PromptPiece
+        model = BuiltPrompt
 
         fields = (
             'pk',

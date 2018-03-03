@@ -50,7 +50,7 @@ class PromptPieceList(APIView):
 class BuiltPromptList(APIView):
     def get(self, request):
         built_prompt = BuiltPrompt.objects.all()
-        serializer = PromptPieceSerializer(built_prompt, many=True)
+        serializer = BuiltPromptSerializer(built_prompt, many=True)
         return Response(serializer.data)
 
         # There is no post for this, that is a strategic choice.
