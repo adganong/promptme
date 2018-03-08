@@ -1,5 +1,3 @@
-# TODO need to create a dictionary with all of the data that will be used for the tests
-
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
