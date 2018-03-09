@@ -5,7 +5,10 @@ from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse as api_reverse
 from django.contrib.auth import get_user_model
 from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
+from . import dict_toolbelt
 
+
+prompt_info_dict = dict_toolbelt.create_test_dict_instance()
 
 def create_piece_types():
     # This is to set up everything we will be using over the course of the tests
@@ -23,7 +26,12 @@ def create_piece_types():
 
 def create_genres():
     # This is to set up everything we will be using over the course of the tests
-    genres_names = ['general', 'sci-fi', 'fantasy', 'thriller']
+    genres_names = [
+        prompt_info_dict['genre']['name'][0],
+        prompt_info_dict['genre']['name'][1],
+        prompt_info_dict['genre']['name'][2],
+        prompt_info_dict['genre']['name'][3],
+    ]
     to_return = []
     for genre_name in genres_names:
         genre = Genre.objects.create(
