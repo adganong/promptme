@@ -5,15 +5,20 @@ from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse as api_reverse
 from django.contrib.auth import get_user_model
 from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
+from . import dict_toolbelt
 
 
-def create_test_library():
-    pass
+prompt_info_dict = dict_toolbelt.create_test_dict_instance()
 
 
 def create_piece_types():
     # This is to set up everything we will be using over the course of the tests
-    piece_types = ['person', 'place', 'thing', 'scenario']
+    piece_types = [
+        prompt_info_dict['piece_type']['name'][0],
+        prompt_info_dict['piece_type']['name'][1],
+        prompt_info_dict['piece_type']['name'][2],
+        prompt_info_dict['piece_type']['name'][3],
+    ]
     to_return = []
     for type_name in piece_types:
         piece_type = PieceType.objects.create(
@@ -27,7 +32,12 @@ def create_piece_types():
 
 def create_genres():
     # This is to set up everything we will be using over the course of the tests
-    genres_names = ['general', 'sci-fi', 'fantasy', 'thriller']
+    genres_names = [
+        prompt_info_dict['genre']['name'][0],
+        prompt_info_dict['genre']['name'][1],
+        prompt_info_dict['genre']['name'][2],
+        prompt_info_dict['genre']['name'][3],
+    ]
     to_return = []
     for genre_name in genres_names:
         genre = Genre.objects.create(
@@ -40,8 +50,18 @@ def create_genres():
 
 def create_prompt_pieces(piece_types, piece_genres):
     # This is to set up everything we will be using over the course of the tests
-    piece_name = ['Retired Captain', 'A Market', 'A Computer', 'Something has been lost']
-    piece_description = ['description 1', 'description 2', 'description 3', 'description 4']
+    piece_name = [
+        prompt_info_dict['prompt_piece']['name'][0],
+        prompt_info_dict['prompt_piece']['name'][1],
+        prompt_info_dict['prompt_piece']['name'][2],
+        prompt_info_dict['prompt_piece']['name'][3],
+    ]
+    piece_description = [
+        prompt_info_dict['prompt_piece']['description'][0],
+        prompt_info_dict['prompt_piece']['description'][1],
+        prompt_info_dict['prompt_piece']['description'][2],
+        prompt_info_dict['prompt_piece']['description'][3],
+    ]
     piece_type = PieceType.objects.get(piece_type_name=piece_types[0])
     piece_genre = Genre.objects.get(genre_name=piece_genres[0])
     to_return = []
