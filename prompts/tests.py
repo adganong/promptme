@@ -4,9 +4,12 @@ from rest_framework.test import APITestCase
 from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse as api_reverse
 from .models import Genre, PromptPiece, BuiltPrompt, PieceType
-from prompts.toolbelt import tests_toolbelt
+from prompts.toolbelt import tests_toolbelt, models_toolbelt, dict_toolbelt
 from django.contrib.auth import get_user_model
 # Pieces to be used throughout the tests
+
+# intialize this variable to be used in every test
+prompt_info_dict = dict_toolbelt.create_test_dict_instance()
 
 
 class UserCreationTest(APITestCase):
@@ -40,6 +43,7 @@ class BasicModelTests(APITestCase):
         self.assertEqual(prompt_count, 1)
 
 
+
 class EndPointTests(APITestCase):
     def setUp(self):
         tests_toolbelt.do_full_setup()
@@ -49,26 +53,37 @@ class EndPointTests(APITestCase):
         data = {}
         url = api_reverse("api-genres:genres-list")
         response = self.client.get(url, data, format='json')
+        print('#######genres######################################################################')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 4)
+
 
     def test_get_piece_types(self):
         data = {}
         url = api_reverse("api-piece_types:piece_types-list")
         response = self.client.get(url, data, format='json')
+        print('######types#######################################################################')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 4)
 
     def test_get_prompt_pieces(self):
         data = {}
         url = api_reverse("api-prompt_pieces:prompt_pieces-list")
         response = self.client.get(url, data, format='json')
+        print('########pieces#####################################################################')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 4)
 
     def test_get_built_prompts(self):
         data = {}
         url = api_reverse("api-built_prompts:built_prompts-list")
         response = self.client.get(url, data, format='json')
+        print('#########built####################################################################')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    
