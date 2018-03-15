@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import GenreList, PieceTypeList, PromptPieceList, BuiltPromptList
+from .views import GenreList, PieceTypeList, PromptPieceList, BuiltPromptList, PromptPieceRudView
 
 urlpatterns = [
     # For genres
@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^prompt_pieces_list/', PromptPieceList.as_view(), name='prompt_pieces-list'),
     url(r'^built_prompts_list/', BuiltPromptList.as_view(), name='built_prompts-list'),
     # Something else
+    url(r'^(?P<pk>\d+)/$', PromptPieceRudView.as_view(), name='prompt_pieces-rud'),
 ]
 

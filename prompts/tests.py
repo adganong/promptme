@@ -8,7 +8,7 @@ from prompts.toolbelt import tests_toolbelt, models_toolbelt, dict_toolbelt
 from django.contrib.auth import get_user_model
 # Pieces to be used throughout the tests
 
-# intialize this variable to be used in every test
+# initialize this variable to be used in every test
 prompt_info_dict = dict_toolbelt.create_test_dict_instance()
 
 

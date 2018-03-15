@@ -8,6 +8,7 @@ from prompts import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # For genres
+    # Actually, turns out most of these are redundant. that's okay
     url(r'^api/genres/', include('prompts.urls', namespace='api-genres')),
     url(r'^api/piece_types/', include('prompts.urls', namespace='api-piece_types')),
     url(r'^api/prompt_pieces/', include('prompts.urls', namespace='api-prompt_pieces')),

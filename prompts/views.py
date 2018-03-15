@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import generics
 from rest_framework import status
 from .models import Genre, PromptPiece, BuiltPrompt, PieceType
 from .serializer import GenreSerializer, PieceTypeSerializer, PromptPieceSerializer, BuiltPromptSerializer
@@ -58,3 +59,21 @@ class BuiltPromptList(APIView):
 
     def get_serializer_context(self, *args, **kwargs):
         return {"request": self.request}
+
+
+class PromptPieceRudView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'pk'
+    serializer_class = PromptPieceSerializer
+    # queryset = PromptPiece.objects.all()
+
+    def get_queryset(self):
+        return PromptPiece.objects.all()
+
+    '''lookup_field_type = 'piece_type'
+    lookup_field_genre = 'piece_genre'
+
+    def get(self, request):
+        pass
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}'''
