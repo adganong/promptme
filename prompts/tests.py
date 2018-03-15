@@ -77,3 +77,10 @@ class EndPointTests(APITestCase):
         response = self.client.get(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
+
+    def test_get_retrieve_single_prompt_piece_by_type(self):
+        data = {}
+        url = api_reverse("api-prompt_pieces:built_prompts-singleByType")
+        response = self.client.get(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
