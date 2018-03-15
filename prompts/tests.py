@@ -53,8 +53,6 @@ class EndPointTests(APITestCase):
         data = {}
         url = api_reverse("api-genres:genres-list")
         response = self.client.get(url, data, format='json')
-        print('#######genres######################################################################')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 4)
 
@@ -63,8 +61,6 @@ class EndPointTests(APITestCase):
         data = {}
         url = api_reverse("api-piece_types:piece_types-list")
         response = self.client.get(url, data, format='json')
-        print('######types#######################################################################')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 4)
 
@@ -72,8 +68,6 @@ class EndPointTests(APITestCase):
         data = {}
         url = api_reverse("api-prompt_pieces:prompt_pieces-list")
         response = self.client.get(url, data, format='json')
-        print('########pieces#####################################################################')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 4)
 
@@ -81,9 +75,5 @@ class EndPointTests(APITestCase):
         data = {}
         url = api_reverse("api-built_prompts:built_prompts-list")
         response = self.client.get(url, data, format='json')
-        print('#########built####################################################################')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
-
-    

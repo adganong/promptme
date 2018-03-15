@@ -2,3 +2,9 @@
 # TODO decide exactly what singles need to be retrieved
 # TODO Make pseudo code for retrieving the different version of random prompts (including tests)
 
+I need to decide how exact I want my tests to be. I sort of want to be able to actually test the data that
+is returned but that may end up being too tricky with how Django handles responses. If I can get it figured
+out though I can use the built dictionary
+
+I am skipping over some of the tests for now so that I can get on to real stuff, then I'll get back to testing later
+because this testing is getting aggravating and I DO have tests, just not as robust as they should be
