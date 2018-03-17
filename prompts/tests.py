@@ -32,13 +32,7 @@ class BasicModelTests(APITestCase):
         # todo this test needs to be changed so that it queries to find out what the genre id is
         # todo My dictionary is all fucked up. It is giving everything a genre id of 1
         # todo tests are broken. The setup class needs to be modified before I proceed with them
-        prompt_piece = PromptPiece.objects.all()
-        serializer = PromptPieceSerializer(prompt_piece, many=True)
-        print('This is my serializer data!!!')
-        print(serializer.data)
         response = models_toolbelt.get_piece_based_on_genre_and_type(9, 9)
-
-        print(response)
         self.assertEqual(len(response), 1)
 
 

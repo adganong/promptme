@@ -8,6 +8,8 @@ from .serializer import GenreSerializer, PieceTypeSerializer, PromptPieceSeriali
 from .toolbelt import models_toolbelt
 # NOTE: This will eventually need to be switched to a mix in apparently
 # if it is done that way we will get and pot with the same URL... I dunno if I like that
+
+
 class GenreList(APIView):
 
     def get(self, request):
