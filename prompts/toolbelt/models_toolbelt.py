@@ -6,9 +6,8 @@ from prompts.models import Genre, PromptPiece, BuiltPrompt, PieceType
 
 
 # This takes in the piece I want, and also the genre I want, but genre is not needed.
-def get_specific_piece_based_on_genre_and_type(genre_id, type_id):
-    qs = PromptPiece.objects.filter(piece_type=type_id, piece_genre=genre_id)
-    return qs
+def get_piece_based_on_genre_and_type(genre_id, type_id):
+    return PromptPiece.objects.filter(piece_type=type_id, piece_genre=genre_id)
 
 
 def get_specific_piece_general(piece):

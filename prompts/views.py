@@ -67,10 +67,8 @@ class GetPromptByType(generics.ListAPIView):
     serializer_class = PromptPieceSerializer
 
     def get_queryset(self):
-        qs = PromptPiece.objects.all()
         # This gets the stuff out of the request for me!
-        query = self.request.GET.get('genre')
-        query2 = self.request.GET.get('type')
-        print(str(query) + ' ' + str(query2))
-
+        genre_id = self.request.GET.get('genre')
+        type_id = self.request.GET.get('type')
+        return models_toolbelt.get_piece_based_on_genre_and_type(genre_id, type_id)
 
