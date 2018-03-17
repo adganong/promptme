@@ -72,6 +72,6 @@ class GetPromptByType(generics.ListAPIView):
         # This gets the stuff out of the request for me!
         genre_id = self.request.GET.get('genre')
         type_id = self.request.GET.get('type')
-        printThis = models_toolbelt.get_piece_based_on_genre_and_type(genre_id, type_id)
-        return models_toolbelt.get_piece_based_on_genre_and_type(genre_id, type_id)
+        printThis = models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
+        return models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
 
