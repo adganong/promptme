@@ -1,6 +1,8 @@
 # TODO need to modify my urls so that singles can be retrieved
 # TODO decide exactly what singles need to be retrieved
 # TODO Make pseudo code for retrieving the different version of random prompts (including tests)
+# Todo build the basic version of retrieving a single prompt
+# todo fix url paths on develop so that they are all contained within a urls folder or something
 
 I need to decide how exact I want my tests to be. I sort of want to be able to actually test the data that
 is returned but that may end up being too tricky with how Django handles responses. If I can get it figured
