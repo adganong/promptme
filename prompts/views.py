@@ -75,3 +75,5 @@ class GetPromptByType(generics.ListAPIView):
         printThis = models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
         return models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
 
+
+
