@@ -15,7 +15,11 @@ def get_specific_piece_general(piece):
 
 
 def make_prompt_based_on_genre(genre_id):
-    pass
+    person = get_piece_based_on_genre_and_type(genre_id, 1)
+    place = get_piece_based_on_genre_and_type(genre_id, 2)
+    thing = get_piece_based_on_genre_and_type(genre_id, 3)
+    scenario = get_piece_based_on_genre_and_type(genre_id, 4)
+
 
 
 
