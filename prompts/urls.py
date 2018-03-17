@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import GenreList, PieceTypeList, PromptPieceList, BuiltPromptList
+from .views import GenreList, PieceTypeList, PromptPieceList, BuiltPromptList, GetPromptByType
 
 urlpatterns = [
     # For genres
@@ -9,6 +9,6 @@ urlpatterns = [
     # This probably won't ever be used? Need to make one that can directly access certain pieces
     url(r'^prompt_pieces_list/', PromptPieceList.as_view(), name='prompt_pieces-list'),
     url(r'^built_prompts_list/', BuiltPromptList.as_view(), name='built_prompts-list'),
-    # Something else
+    url(r'^get_piece/$', GetPromptByType.as_view(), name='prompt_pieces-rud'),
 ]
 

@@ -1,5 +1,5 @@
 # Add and change data here #####################################################################
-genre_names                 = ['general', 'sci-fi', 'fantasy', 'thriller']
+genre_names                 = ['general', 'fantasy', 'sci-fi', 'thriller']
 piece_type_names            = ['person', 'place', 'thing', 'scenario']
 prompt_piece_names          = ['Retired Captain', 'A Market', 'A Computer', 'Something has been lost']
 prompt_piece_description    = ['description 1', 'description 2', 'description 3', 'description 4']
