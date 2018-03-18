@@ -32,19 +32,41 @@ class PieceType(models.Model):
 
 # PROMPT PIECE #############################################################################################
 class RandomPromptPieceManager(models.Manager):
+    def genre_and_type(self, genre_id, type_id):
+        count = self.all().filter(piece_genre=genre_id).filter(piece_type=type_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset()\
+                .filter(piece_genre=genre_id)\
+                .filter(piece_type=type_id)[random_index-1:random_index]
+        else:
+            result = None
+        return result
+
     def random(self):
-        count = self.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return self.all()[random_index]
+        count = self.all().count()
+        random_index = randint(1, count - 1)
+        return super().get_queryset().filter(pk=random_index)
 
-    def type(self):
-        pass
+    def type(self, type_id):
+        count = self.all().filter(piece_type=type_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset().filter(piece_type=type_id)[random_index - 1:random_index]
+        else:
+            result = None
+        return result
 
-    def genre(self):
-        pass
+    def genre(self, genre_id):
+        count = self.all().filter(piece_genre=genre_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset().filter(piece_genre=genre_id)[random_index - 1:random_index]
+        else:
+            result = None
+        return result
 
-    def genre_and_type(self):
-        pass
+
 
 
 class PromptPiece(models.Model):
@@ -59,11 +81,8 @@ class PromptPiece(models.Model):
     # Example of doing random!
     # PromptPiece.objects.random()
 
-    def get_random_by_genre(self):
-        pass
-
-    def __str__(self):
-        return str(self.piece_name)
+    '''def __str__(self):
+        return str(self.piece_name)'''
 
     def get_api_url(self, request=None):
         return api_reverse("api-prompt_pieces:prompt_pieces-list", request=request)

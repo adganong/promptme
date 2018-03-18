@@ -27,6 +27,7 @@ class GenreList(APIView):
 class PieceTypeList(APIView):
 
     def get(self, request):
+        print('called')
         piece_type = PieceType.objects.all()
         serializer = PieceTypeSerializer(piece_type, many=True)
         return Response(serializer.data)
@@ -65,6 +66,7 @@ class BuiltPromptList(APIView):
 
 
 class GetPromptByType(generics.ListAPIView):
+    print('called one')
     lookup_field = 'genre'
     serializer_class = PromptPieceSerializer
 
@@ -72,8 +74,12 @@ class GetPromptByType(generics.ListAPIView):
         # This gets the stuff out of the request for me!
         genre_id = self.request.GET.get('genre')
         type_id = self.request.GET.get('type')
-        printThis = models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
-        return models_toolbelt.get_random_piece_based_on_genre_and_type(genre_id, type_id)
+        print_this = PromptPiece.randomPieceBy.genre_and_type(
+            genre_id=genre_id,
+            type_id=type_id,
+        )
+        return print_this
+
 
 
 
