@@ -32,6 +32,7 @@ class PieceType(models.Model):
 
 # PROMPT PIECE #############################################################################################
 class RandomPromptPieceManager(models.Manager):
+
     def genre_and_type(self, genre_id, type_id):
         count = self.all().filter(piece_genre=genre_id).filter(piece_type=type_id).count()
         if count != 0:
@@ -74,10 +75,11 @@ class PromptPiece(models.Model):
     piece_type          = models.ForeignKey(PieceType, on_delete=models.CASCADE)
     piece_genre         = models.ForeignKey(Genre, on_delete=models.CASCADE)
     piece_name          = models.CharField(max_length=256, null=False, blank=False)
-    piece_description   = models.TextField(max_length=256, null=True, blank=True)
+    piece_description   = models.TextField(max_length=1000, null=True, blank=True)
 
     # Model Manager
     randomPieceBy = RandomPromptPieceManager()
+    objects = models.Manager()
     # Example of doing random!
     # PromptPiece.objects.random()
 
@@ -88,6 +90,46 @@ class PromptPiece(models.Model):
         return api_reverse("api-prompt_pieces:prompt_pieces-list", request=request)
 # PROMPT PIECE #############################################################################################
 
+
+# Built Prompt #############################################################################################
+# I will need this evnetually, but for now it can be done a different way
+
+class RandomBuiltPromptManager(models.Manager):
+
+    def genre_and_type(self, genre_id, type_id):
+        pass
+        '''count = self.all().filter(piece_genre=genre_id).filter(piece_type=type_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset() \
+                         .filter(piece_genre=genre_id) \
+                         .filter(piece_type=type_id)[random_index - 1:random_index]
+        else:
+            result = None
+        return result
+
+    def random(self):
+        count = self.all().count()
+        random_index = randint(1, count - 1)
+        return super().get_queryset().filter(pk=random_index)
+
+    def type(self, type_id):
+        count = self.all().filter(piece_type=type_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset().filter(piece_type=type_id)[random_index - 1:random_index]
+        else:
+            result = None
+        return result
+
+    def genre(self, genre_id):
+        count = self.all().filter(piece_genre=genre_id).count()
+        if count != 0:
+            random_index = randint(1, count)
+            result = super().get_queryset().filter(piece_genre=genre_id)[random_index - 1:random_index]
+        else:
+            result = None
+        return result'''
 
 class BuiltPrompt(models.Model):
     prompt_name     = models.CharField(max_length=256, null=True, blank=True)
@@ -109,6 +151,7 @@ class BuiltPrompt(models.Model):
 
     def get_api_url(self, request=None):
         return api_reverse("api-built_prompts:built_prompts-list", request=request)
+#####################################################################################################################
 
 
 
