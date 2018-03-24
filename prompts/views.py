@@ -74,12 +74,29 @@ class GetPromptByType(generics.ListAPIView):
         # This gets the stuff out of the request for me!
         genre_id = self.request.GET.get('genre')
         type_id = self.request.GET.get('type')
-        print_this = PromptPiece.randomPieceBy.genre_and_type(
+        piece_to_return = PromptPiece.randomPieceBy.genre_and_type(
             genre_id=genre_id,
             type_id=type_id,
         )
-        return print_this
+        return piece_to_return
 
+
+class GetRandomPrompt(APIView):
+    def get(self, request):
+        # This gets the stuff out of the request for me!
+        genre_id = self.request.GET.get('genre')
+        prompt_to_return = models_toolbelt.make_random_prompt(genre_id)
+        serializer = BuiltPromptSerializer(prompt_to_return, many=False)
+        return Response(serializer.data)
+        # return prompt_to_return
+
+
+class GetWildcardPrompt(APIView):
+    def get(self, request):
+        # This gets the stuff out of the request for me!
+        prompt_to_return = models_toolbelt.make_random_prompt()
+        serializer = BuiltPromptSerializer(prompt_to_return, many=False)
+        return Response(serializer.data)
 
 
 

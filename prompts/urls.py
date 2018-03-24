@@ -1,6 +1,8 @@
 from django.conf.urls import url
 
-from .views import GenreList, PieceTypeList, PromptPieceList, BuiltPromptList, GetPromptByType
+from .views import \
+    GenreList, PieceTypeList, PromptPieceList, BuiltPromptList, GetPromptByType, \
+    GetRandomPrompt, GetWildcardPrompt
 
 urlpatterns = [
     # For genres
@@ -10,6 +12,8 @@ urlpatterns = [
     url(r'^prompt_pieces_list/', PromptPieceList.as_view(), name='prompt_pieces-list'),
     url(r'^built_prompts_list/', BuiltPromptList.as_view(), name='built_prompts-list'),
     url(r'^get_piece/$', GetPromptByType.as_view(), name='prompt_pieces-rud'),
+    url(r'^get_random_prompt/$', GetRandomPrompt.as_view(), name='prompt_pieces-rud'),
+    url(r'^get_wild_card_prompt/', GetWildcardPrompt.as_view(), name='prompt_pieces-rud'),
     #url(r'^test/$', GetPromptByType.as_view(), name='prompt_pieces-rud'),
 ]
 

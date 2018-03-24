@@ -62,6 +62,7 @@ class BuiltPromptSerializer(serializers.ModelSerializer):
         fields = (
             'pk',
             'is_wild_card',
+            'genre',
             'prompt_name',
             'prompt_person',
             'prompt_place',
@@ -74,6 +75,7 @@ class BuiltPromptSerializer(serializers.ModelSerializer):
         read_only_fields = [
             'pk',
             'is_wild_card',
+            'genre',
             'prompt_name',
             'prompt_person',
             'prompt_place',

@@ -14,16 +14,29 @@ def get_specific_piece_general(piece):
     pass
 
 
-def make_prompt_based_on_genre(genre_id):
-    person = get_random_piece_based_on_genre_and_type(genre_id, 1)
-    place = get_random_piece_based_on_genre_and_type(genre_id, 2)
-    thing = get_random_piece_based_on_genre_and_type(genre_id, 3)
-    scenario = get_random_piece_based_on_genre_and_type(genre_id, 4)
+def make_random_prompt(genre_id=None):
+    if genre_id is None:
+        print("Me first")
+        return BuiltPrompt.objects.create(
+            prompt_name='new prompt',
+            is_wild_card=True,
+            genre=None,
+            prompt_person=PromptPiece.randomPieceBy.type(1)[0],
+            prompt_place=PromptPiece.randomPieceBy.type(2)[0],
+            prompt_thing=PromptPiece.randomPieceBy.type(3)[0],
+            prompt_scenario=PromptPiece.randomPieceBy.type(4)[0],
+        )
+    else:
+        print("Me Second")
+        return BuiltPrompt.objects.create(
+            prompt_name='new prompt',
+            is_wild_card=False,
+            genre=Genre.objects.get(pk=genre_id),
+            prompt_person=PromptPiece.randomPieceBy.genre_and_type(genre_id, 1)[0],
+            prompt_place=PromptPiece.randomPieceBy.genre_and_type(genre_id, 2)[0],
+            prompt_thing=PromptPiece.randomPieceBy.genre_and_type(genre_id, 3)[0],
+            prompt_scenario=PromptPiece.randomPieceBy.genre_and_type(genre_id, 4)[0],
+        )
 
-
-
-
-def make_wild_card_prompt():
-    pass
 
 

@@ -83,8 +83,13 @@ class PromptPiece(models.Model):
     # Example of doing random!
     # PromptPiece.objects.random()
 
-    '''def __str__(self):
-        return str(self.piece_name)'''
+    def __str__(self):
+        return str(
+            self.piece_type.piece_type_name + "\n\n " +
+            self.piece_genre.genre_name + "\n\n " +
+            self.piece_name + "\n\n " +
+            self.piece_description + "\n\n "
+        )
 
     def get_api_url(self, request=None):
         return api_reverse("api-prompt_pieces:prompt_pieces-list", request=request)
@@ -131,6 +136,7 @@ class RandomBuiltPromptManager(models.Manager):
             result = None
         return result'''
 
+
 class BuiltPrompt(models.Model):
     prompt_name     = models.CharField(max_length=256, null=True, blank=True)
     is_wild_card    = models.NullBooleanField(null=True, blank=True)
@@ -148,6 +154,10 @@ class BuiltPrompt(models.Model):
             "\tThing:\t\t\t"     + self.prompt_thing.piece_name      + " \n " +
             "\tScenario:\t\t"  + self.prompt_scenario.piece_name
         )
+
+    def generate_random_prompt(self, genre_id=None):
+        pass
+
 
     def get_api_url(self, request=None):
         return api_reverse("api-built_prompts:built_prompts-list", request=request)
